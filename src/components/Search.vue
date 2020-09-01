@@ -1,11 +1,32 @@
 <template>
   <div class="search">
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group
+          id="input-group-1"
+          label="Email address:"
+          label-for="input-1"
+          description="We'll never share your email with anyone else.">
+          <b-form-input
+            id="input-1"
+            v-model="form.email"
+            type="text"
+            required
+            placeholder="Enter email"
+          ></b-form-input>
+        </b-form-group>
+      </b-form>
     <h1>Search</h1>
     <input type="text" v-model='query' @keyup="getResult(query)">
-    <div v-for='result in results' :key='result.id'>
-      <p>{{result.title}}</p>
-      <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + result.poster_path" alt=result.title width='100px'>
-    </div>
+      <b-container fluid class="p-4 bg-dark">
+        <b-row>
+          <div v-for='result in results' :key='result.id'>
+            <b-col class="mr-3">
+              <b-img v-bind:src="'http://image.tmdb.org/t/p/w500/' + result.poster_path" width='200px' alt="Image"></b-img>
+              <p>{{result.title}}</p>
+            </b-col>
+          </div>
+        </b-row>
+      </b-container>
   </div>
 </template>
 
