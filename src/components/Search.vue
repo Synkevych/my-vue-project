@@ -3,20 +3,20 @@
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
-          label="Email address:"
+          label="Search "
           label-for="input-1"
           description="We'll never share your email with anyone else.">
+          <h1>Search</h1>
           <b-form-input
             id="input-1"
-            v-model="form.email"
             type="text"
             required
             placeholder="Enter email"
+            v-model='query' @keyup="getResult(query)"
           ></b-form-input>
         </b-form-group>
       </b-form>
-    <h1>Search</h1>
-    <input type="text" v-model='query' @keyup="getResult(query)">
+    <!-- <input type="text" v-model='query' @keyup="getResult(query)"> -->
       <b-container fluid class="p-4 bg-dark">
         <b-row>
           <div v-for='result in results' :key='result.id'>
